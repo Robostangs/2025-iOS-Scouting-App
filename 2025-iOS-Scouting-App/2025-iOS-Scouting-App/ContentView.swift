@@ -35,8 +35,8 @@ struct ContentView: View {
             ScrollView {
                 VStack(spacing: 15) {
                     // Header
-                    Text("ReefScape Scouting App")
-                        .font(.largeTitle)
+                    Text("Reefscape Scouting App")
+                        .font(.title)
                         .bold()
                         .foregroundColor(.blue)
                         .multilineTextAlignment(.center)
@@ -233,7 +233,7 @@ struct QRCodeView: View {
 
     var body: some View {
         VStack {
-            Text("QR Code")
+            Text("Match Data:")
                 .font(.title)
                 .bold()
             Image(uiImage: generateQRCode(from: data))
@@ -247,7 +247,7 @@ struct QRCodeView: View {
                 resetForm = true
                 presentationMode.wrappedValue.dismiss() // Dismiss the current view and go back to the previous page
             }) {
-                Text("Clear")
+                Text("Next Match ->")
                     .bold()
                     .frame(maxWidth: .infinity)
                     .padding()
