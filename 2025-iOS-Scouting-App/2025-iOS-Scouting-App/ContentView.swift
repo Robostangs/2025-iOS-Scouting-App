@@ -1,7 +1,7 @@
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 
-struct ContentView: View {
+struct HomeView: View {
     @State private var studentID = ""
     @State private var teamNumber = ""
     @State private var matchNumber = ""
@@ -29,119 +29,119 @@ struct ContentView: View {
     private let finishingPositionOptions = ["N/A", "Parked", "Shallow", "Deep"]
     @State private var comments = ""
     @State private var resetForm = false
-
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 15) {
-                    // Header
-                    Text("Reefscape Scouting App")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.blue)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                    Text("548 Northville Robostangs")
-                        .font(.title2)
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                    
-                    // Student Information
-                    Group {
-                        TextField("Student ID", text: $studentID)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal)
-                        TextField("Team Number", text: $teamNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal)
-                        TextField("Match Number", text: $matchNumber)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal)
-                    }
-                    
-                    // Autonomous Section
-                    SectionHeader(title: "Autonomous")
-                    HStack {
-                        Text("Left Starting:")
-                            .font(.headline)
-                            .frame(width: 150, alignment: .leading)
-                        Picker("", selection: $leftStarting) {
-                            ForEach(leftStartingOptions, id: \.self) {
-                                Text($0)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-                    .padding(.horizontal)
-                    SectionHeader(title: "Coral")
-                    TFieldsSection(titlePrefix: "Auto", t1: $autoT1, t2: $autoT2, t3: $autoT3, t4: $autoT4)
-                    SectionHeader(title: "Algae")
-                    VStack {
-                        Stepper("Algae P: \(autoAlgaeT1)", value: $autoAlgaeT1, in: 0...100)
-                            .padding(.horizontal)
-                        Stepper("Algae N: \(autoAlgaeT2)", value: $autoAlgaeT2, in: 0...100)
-                            .padding(.horizontal)
-                    }
-                    
-                    // Tele-Op Section
-                    SectionHeader(title: "Tele-Op")
-                    HStack {
-                        Text("Defense Bot:")
-                            .font(.headline)
-                            .frame(width: 150, alignment: .leading)
-                        Picker("", selection: $defenseBot) {
-                            ForEach(defenseBotOptions, id: \.self) {
-                                Text($0)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-                    .padding(.horizontal)
-                    SectionHeader(title: "Coral")
-                    TFieldsSection(titlePrefix: "Tele", t1: $teleT1, t2: $teleT2, t3: $teleT3, t4: $teleT4)
-                    SectionHeader(title: "Algae")
-                    VStack {
-                        Stepper("Algae P: \(teleAlgaeT1)", value: $teleAlgaeT1, in: 0...100)
-                            .padding(.horizontal)
-                        Stepper("Algae N: \(teleAlgaeT2)", value: $teleAlgaeT2, in: 0...100)
-                            .padding(.horizontal)
-                    }
-                    
-                    // Endgame Section
-                    SectionHeader(title: "Endgame")
-                    Picker("Finishing Position", selection: $finishingPosition) {
-                        ForEach(finishingPositionOptions, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                    TextField("Comments", text: $comments)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                    
-                    // QR Code Generation
-                    NavigationLink(destination: QRCodeView(data: generateDataString(), resetForm: $resetForm)) {
-                        Text("Submit")
+    
+        var body: some View {
+            NavigationView {
+                ScrollView {
+                    VStack(spacing: 15) {
+                        // Header
+                        Text("Reefscape Scouting App")
+                            .font(.title)
                             .bold()
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                        Text("548 Northville Robostangs")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                        
+                        // Student Information
+                        Group {
+                            TextField("Student ID", text: $studentID)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.horizontal)
+                            TextField("Team Number", text: $teamNumber)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.horizontal)
+                            TextField("Match Number", text: $matchNumber)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.horizontal)
+                        }
+                        
+                        // Autonomous Section
+                        SectionHeader(title: "Autonomous")
+                        HStack {
+                            Text("Left Starting:")
+                                .font(.headline)
+                                .frame(width: 150, alignment: .leading)
+                            Picker("", selection: $leftStarting) {
+                                ForEach(leftStartingOptions, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                        }
+                        .padding(.horizontal)
+                        SectionHeader(title: "Coral")
+                        TFieldsSection(titlePrefix: "Auto", t1: $autoT1, t2: $autoT2, t3: $autoT3, t4: $autoT4)
+                        SectionHeader(title: "Algae")
+                        VStack {
+                            Stepper("Algae P: \(autoAlgaeT1)", value: $autoAlgaeT1, in: 0...100)
+                                .padding(.horizontal)
+                            Stepper("Algae N: \(autoAlgaeT2)", value: $autoAlgaeT2, in: 0...100)
+                                .padding(.horizontal)
+                        }
+                        
+                        // Tele-Op Section
+                        SectionHeader(title: "Tele-Op")
+                        HStack {
+                            Text("Defense Bot:")
+                                .font(.headline)
+                                .frame(width: 150, alignment: .leading)
+                            Picker("", selection: $defenseBot) {
+                                ForEach(defenseBotOptions, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                        }
+                        .padding(.horizontal)
+                        SectionHeader(title: "Coral")
+                        TFieldsSection(titlePrefix: "Tele", t1: $teleT1, t2: $teleT2, t3: $teleT3, t4: $teleT4)
+                        SectionHeader(title: "Algae")
+                        VStack {
+                            Stepper("Algae P: \(teleAlgaeT1)", value: $teleAlgaeT1, in: 0...100)
+                                .padding(.horizontal)
+                            Stepper("Algae N: \(teleAlgaeT2)", value: $teleAlgaeT2, in: 0...100)
+                                .padding(.horizontal)
+                        }
+                        
+                        // Endgame Section
+                        SectionHeader(title: "Endgame")
+                        Picker("Finishing Position", selection: $finishingPosition) {
+                            ForEach(finishingPositionOptions, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
+                        TextField("Comments", text: $comments)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                        
+                        // QR Code Generation
+                        NavigationLink(destination: QRCodeView(data: generateDataString(), resetForm: $resetForm)) {
+                            Text("Submit")
+                                .bold()
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
-            }
-            .onChange(of: resetForm) { newValue in
-                if newValue {
-                    clearForm()
-                    resetForm = false
+                .onChange(of: resetForm) { newValue in
+                    if newValue {
+                        clearForm()
+                        resetForm = false
+                    }
                 }
             }
         }
-    }
 
     private func generateDataString() -> String {
         let data = [
@@ -260,6 +260,7 @@ struct QRCodeView: View {
     }
 }
 
+
 func generateQRCode(from string: String) -> UIImage {
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
@@ -271,8 +272,40 @@ func generateQRCode(from string: String) -> UIImage {
     return UIImage(systemName: "xmark.circle") ?? UIImage()
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
+    }
+}
+import SwiftUI
+
+struct SettingsView: View{
+    var body: some View{
+        VStack{
+            Text("Settings Screen")
+        }
+    }
+}
+
+#Preview{
+    SettingsView()
+}
+
+import SwiftUI
+
+struct ContentView: View{
+    var body: some View{
+        TabView{
+            HomeView()
+                .tabItem{
+                    Image(systemName: "house.fill")
+                    Text("Home")
+                }
+            SettingsView()
+                .tabItem{
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
+                }
+        }
     }
 }
