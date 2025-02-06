@@ -10,11 +10,18 @@ import SwiftUI
 @main
 struct _025_iOS_Scouting_AppApp: App {
     let persistenceController = PersistenceController.shared
+    @State private var gameHistory: [GameData] = []
+    @State private var resetForm: Bool = false
+    @State private var showWelcomeScreen = true
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if showWelcomeScreen {
+                WelcomeScreen(showWelcomeScreen: $showWelcomeScreen)
+            } else {
+                MainMenuView(gameHistory: $gameHistory, resetForm: $resetForm)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
     }
 }

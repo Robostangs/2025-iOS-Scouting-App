@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4451F7E82D4EAEE5000F4861 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4451F7E72D4EAED5000F4861 /* Untitled.swift */; };
+		4451F7EA2D4EB244000F4861 /* CostomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4451F7E92D4EB238000F4861 /* CostomStepper.swift */; };
+		4451F7EE2D502996000F4861 /* QRcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4451F7ED2D50298A000F4861 /* QRcode.swift */; };
+		446AF51B2D54328200281CDA /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446AF51A2D54327A00281CDA /* GameData.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		96614BB32D45357700919675 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4451F7E72D4EAED5000F4861 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		4451F7E92D4EB238000F4861 /* CostomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomStepper.swift; sourceTree = "<group>"; };
+		4451F7ED2D50298A000F4861 /* QRcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcode.swift; sourceTree = "<group>"; };
+		446AF51A2D54327A00281CDA /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		96614B9B2D45357600919675 /* 2025-iOS-Scouting-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "2025-iOS-Scouting-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96614BB22D45357700919675 /* 2025-iOS-Scouting-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "2025-iOS-Scouting-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96614BBC2D45357700919675 /* 2025-iOS-Scouting-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "2025-iOS-Scouting-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +99,10 @@
 		96614B922D45357600919675 = {
 			isa = PBXGroup;
 			children = (
+				446AF51A2D54327A00281CDA /* GameData.swift */,
+				4451F7ED2D50298A000F4861 /* QRcode.swift */,
+				4451F7E92D4EB238000F4861 /* CostomStepper.swift */,
+				4451F7E72D4EAED5000F4861 /* Untitled.swift */,
 				96614B9D2D45357600919675 /* 2025-iOS-Scouting-App */,
 				96614BB52D45357700919675 /* 2025-iOS-Scouting-AppTests */,
 				96614BBF2D45357700919675 /* 2025-iOS-Scouting-AppUITests */,
@@ -249,6 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4451F7EA2D4EB244000F4861 /* CostomStepper.swift in Sources */,
+				446AF51B2D54328200281CDA /* GameData.swift in Sources */,
+				4451F7E82D4EAEE5000F4861 /* Untitled.swift in Sources */,
+				4451F7EE2D502996000F4861 /* QRcode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
