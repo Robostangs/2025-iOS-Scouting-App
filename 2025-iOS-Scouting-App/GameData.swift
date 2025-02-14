@@ -51,29 +51,12 @@ struct GameData: Identifiable {
             finishingPositionValue = 0
         }
         
-        return """
-        \(studentNameValue),
-        \(matchNumberValue),
-        \(teamNumberValue),
-        \(robotStatusValue),
-        \(autoT1),
-        \(autoT2),
-        \(autoT3),
-        \(autoT4),
-        \(autoAlgaeT1),
-        \(autoAlgaeT2),
-        \(defenseBotValue),
-        \(teleT1),
-        \(teleT2),
-        \(teleT3),
-        \(teleT4),
-        \(teleAlgaeBarge),
-        \(teleAlgaeProccesor),
-        \(teleAlgaeHPA),
-        \(teleAlgaeHPM),
-        \(finishingPositionValue),
-        \(comments)
-        """
+        let data1 = String(studentNameValue) + "," + String(teamNumberValue) + "," + String(matchNumberValue) + "," + String(robotStatusValue) + ","
+             let data2 = String(autoT1)  + "," + String(autoT2)  + "," + String(autoT3) + "," + String(autoT4) + "," + String(autoAlgaeT1) + "," + String(autoAlgaeT2) + ","
+             let data3 = String(defenseBotValue) + "," + String(teleT1) + "," + String(teleT2) + "," + String(teleT3) + "," + String(teleT4) + "," + String(teleAlgaeBarge) + "," + String(teleAlgaeProccesor) + ","
+             let data4 = String(teleAlgaeHPA) + "," + String(teleAlgaeHPM)  + "," + String(finishingPositionValue)  + "," + String(comments)
+             let data = data1+data2+data3+data4
+        return data
     }
 }
 

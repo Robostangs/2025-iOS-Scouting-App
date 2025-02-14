@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct _025_iOS_Scouting_AppApp: App {
+struct Reefscape_iOS_Scouting_AppApp: App {
     let persistenceController = PersistenceController.shared
     @State private var gameHistory: [GameData] = []
     @State private var resetForm: Bool = false

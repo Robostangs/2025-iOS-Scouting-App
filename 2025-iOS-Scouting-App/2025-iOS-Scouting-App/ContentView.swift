@@ -234,7 +234,7 @@ struct ContentView: View {
             }
         }
         .background(Color.black.edgesIgnoringSafeArea(.all))
-        .onChange(of: resetForm) { newValue in
+        .onChange(of: resetForm) { oldValue, newValue in
             if newValue {
                 clearForm()
                 resetForm = false
