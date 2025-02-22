@@ -30,38 +30,27 @@ struct MainMenuView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.orange)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .cornerRadius(10)
+                            .font(.title2)
                     }
                     .padding(.horizontal)
                     .simultaneousGesture(TapGesture().onEnded {
                         resetForm = true
                     })
 
-                    // New Button to go to the scouting page without resetting the form
-                    NavigationLink(destination: ContentView(game: nil, gameHistory: $gameHistory, resetForm: .constant(false))) {
-                        Text("Resume Scouting")
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.orange)
-                            .foregroundColor(.black)
-                            .cornerRadius(10)
-                    }
-                    .padding(.horizontal)
-
                     // Search bar
                     TextField("Search Match Number", text: $searchQuery)
                         .padding()
-                        .background(Color.black)
+                        .background(Color.white)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray, lineWidth: 1)
+                                .stroke(Color.gray, lineWidth: 2)
                         )
-                        .foregroundColor(.white)
                         .padding(.horizontal)
-                        .frame(width: 200) // Adjust the width as needed
+                        .frame(width: 400) // Adjust the width as needed
+                        .keyboardType(.numberPad)
 
                     // Filtered list of saved games
                     List(filteredGames) { game in
@@ -74,14 +63,13 @@ struct MainMenuView: View {
                                     .foregroundColor(.orange)
                             }
                             .padding()
-                            .background(Color.black)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .border(Color.orange, width: 2) // Add border to the list item
                         }
-                        .listRowBackground(Color.black) // Set the list row background color to black
+                        .listRowBackground(Color.white) // Set the list row background color to white
                     }
-                    .background(Color.black) // Set the list background color to black
-                    .scrollContentBackground(.hidden) // Ensure the list items' background is black
+                    .background(Color.white) // Set the list background color to white
                 }
                 Spacer()
                 Image("robostangs_logo") // Make sure the image is added to your assets with this name
@@ -90,7 +78,7 @@ struct MainMenuView: View {
                     .frame(width: 300, height: 300)
                     .padding(.top, 20)
             }
-            .background(Color.black.edgesIgnoringSafeArea(.all))
+            .background(Color.white.edgesIgnoringSafeArea(.all))
             .navigationBarHidden(true)
         }
     }
@@ -233,7 +221,7 @@ struct ContentView: View {
                 endgameAndSubmitSection
             }
         }
-        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .background(Color.white.edgesIgnoringSafeArea(.all))
         .onChange(of: resetForm) { newValue in
             if newValue {
                 clearForm()
@@ -254,18 +242,7 @@ struct ContentView: View {
 
     private var headerSection: some View {
         Group {
-            Text("Reefscape Scouting App")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.orange)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-            Text("548 Northville Robostangs")
-                .font(.title2)
-                .bold()
-                .foregroundColor(.orange)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
+          
         }
     }
 
@@ -277,9 +254,11 @@ struct ContentView: View {
             TextField("Team Number", text: $teamNumber)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
+                .keyboardType(.numberPad)
             TextField("Match Number", text: $matchNumber)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
+                .keyboardType(.numberPad)
         }
     }
 
@@ -289,7 +268,7 @@ struct ContentView: View {
             HStack {
                 Text("Left Starting:")
                     .font(.headline)
-                    .foregroundColor(.orange)
+                    .foregroundColor(.black)
                     .frame(width: 150, alignment: .leading)
                 Picker("", selection: $robotStatus) {
                     ForEach(options, id: \.self) { option in
@@ -299,22 +278,26 @@ struct ContentView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(5)
-                .background(Color.white)
                 .cornerRadius(8)
             }
             .padding(.horizontal)
-            SectionHeader(title: "Coral")
-            VStack(spacing: 10) {
-                CustomStepper(label: "Auto T1", value: $autoT1)
-                CustomStepper(label: "Auto T2", value: $autoT2)
-                CustomStepper(label: "Auto T3", value: $autoT3)
-                CustomStepper(label: "Auto T4", value: $autoT4)
+            .padding(.bottom, 10)
+            SectionHeader(title: "Coral", color: .black, fontSize: .title2)
+            VStack(spacing: 20) {
+                CustomStepperView(label: "T4:", value: $autoT1)
+                CustomStepperView(label: "T3:", value: $autoT2)
+                CustomStepperView(label: "T2:", value: $autoT3)
+                CustomStepperView(label: "T1:", value: $autoT4)
             }
-            SectionHeader(title: "Algae")
-            VStack(spacing: 10) {
-                CustomStepper(label: "Auto Algae Barge", value: $autoAlgaeT1)
-                CustomStepper(label: "Auto Algae Processor", value: $autoAlgaeT2)
+            .padding(.horizontal)
+            .padding(.bottom, 20) // Add space under each picker
+            SectionHeader(title: "Algae", color: .black, fontSize: .title2)
+            VStack(spacing: 20) {
+                CustomStepperView(label: "Barge:", value: $autoAlgaeT1)
+                CustomStepperView(label: "Processor:", value: $autoAlgaeT2)
             }
+            .padding(.horizontal)
+            .padding(.bottom, 20) // Add space under each picker
         }
     }
 
@@ -324,31 +307,38 @@ struct ContentView: View {
             HStack {
                 Text("Defense Bot:")
                     .font(.headline)
-                    .foregroundColor(.orange)
+                    .foregroundColor(.black)
                     .frame(width: 150, alignment: .leading)
                 Picker("", selection: $defenseBot) {
                     ForEach(options, id: \.self) { option in
                         Text(option)
+                            .foregroundColor(Color.black)
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .background(Color.white)
+                .padding(5)
+                .cornerRadius(8)
             }
             .padding(.horizontal)
-            SectionHeader(title: "Coral")
-            VStack(spacing: 10) {
-                CustomStepper(label: "Tele T1", value: $teleT1)
-                CustomStepper(label: "Tele T2", value: $teleT2)
-                CustomStepper(label: "Tele T3", value: $teleT3)
-                CustomStepper(label: "Tele T4", value: $teleT4)
+            .padding(.bottom, 10)
+            SectionHeader(title: "Coral", color: .black, fontSize: .title2)
+            VStack(spacing: 20) {
+                CustomStepperView(label: "T4:", value: $teleT1)
+                CustomStepperView(label: "T3:", value: $teleT2)
+                CustomStepperView(label: "T2:", value: $teleT3)
+                CustomStepperView(label: "T1:", value: $teleT4)
             }
-            SectionHeader(title: "Algae")
-            VStack(spacing: 10) {
-                CustomStepper(label: "Tele Algae Barge", value: $teleAlgaeBarge)
-                CustomStepper(label: "Tele Algae Proccesor", value: $teleAlgaeProccesor)
-                CustomStepper(label: "Tele Algae HPA", value: $teleAlgaeHPA)
-                CustomStepper(label: "Tele Algae HPM", value: $teleAlgaeHPM)
+            .padding(.horizontal)
+            .padding(.bottom, 20) // Add space under each picker
+            SectionHeader(title: "Algae", color: .black, fontSize: .title2)
+            VStack(spacing: 20) {
+                CustomStepperView(label: "Barge:", value: $teleAlgaeBarge)
+                CustomStepperView(label: "Proccesor:", value: $teleAlgaeProccesor)
+                CustomStepperView(label: "HP Barge Attempted:", value: $teleAlgaeHPA)
+                CustomStepperView(label: "HP Barge Made:", value: $teleAlgaeHPM)
             }
+            .padding(.horizontal)
+            .padding(.bottom, 20) // Add space under each picker
         }
     }
 
@@ -365,19 +355,15 @@ struct ContentView: View {
         Group {
             SectionHeader(title: "Endgame")
             HStack {
-                Text("Finishing Position:")
-                    .font(.headline)
-                    .foregroundColor(.orange)
-                    .frame(width: 150, alignment: .leading)
                 Picker("", selection: $finishingPosition) {
                     ForEach(finishingPositionOptions, id: \.self) {
                         Text($0)
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .background(Color.white)
             }
             .padding(.horizontal)
+            .padding(.bottom, 10)
             TextField("Comments", text: $comments)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
@@ -413,8 +399,9 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.orange)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .cornerRadius(10)
+                .font(.title2)
         }
         .padding()
     }
@@ -423,13 +410,65 @@ struct ContentView: View {
 // SectionHeader View
 struct SectionHeader: View {
     let title: String
+    var color: Color = .orange
+    var fontSize: Font = .title
     var body: some View {
         Text(title)
-            .font(.title2)
+            .font(fontSize)
             .bold()
-            .foregroundColor(.orange)
+            .foregroundColor(color)
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .padding(.top)
+    }
+}
+
+// CustomStepperView View
+struct CustomStepperView: View {
+    let label: String
+    @Binding var value: Int
+
+    var body: some View {
+        HStack {
+            Text(label)
+                .font(.headline)
+                .foregroundColor(.black)
+                .frame(width: 150, alignment: .leading)
+            
+            Spacer()
+            
+            Button(action: {
+                if value > 0 {
+                    value -= 1
+                }
+            }) {
+                Text("-")
+                    .font(.title2)
+                    .frame(width: 50, height: 30)
+                    .background(Color.red) // Red color for decrement button
+                    .foregroundColor(.white)
+                    .cornerRadius(5)
+            }
+
+            Text("\(value)")
+                .font(.title2)
+                .foregroundColor(.black) // Set the number color to black
+                .frame(width: 60, alignment: .center)
+
+            Button(action: {
+                if value < 100 {
+                    value += 1
+                }
+            }) {
+                Text("+")
+                    .font(.title2)
+                    .frame(width: 50, height: 30)
+                    .background(Color.green) // Green color for increment button
+                    .foregroundColor(.white)
+                    .cornerRadius(5)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.bottom, 10) // Add space under each picker
     }
 }

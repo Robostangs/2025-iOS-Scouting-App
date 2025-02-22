@@ -14,7 +14,7 @@ struct WelcomeScreen: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("WELCOME TO REEFSCAPE SCOUTING APP")
+            Text("Welcome to the Reefscape Scouting App")
                 .font(.largeTitle)
                 .bold()
                 .foregroundColor(.orange)

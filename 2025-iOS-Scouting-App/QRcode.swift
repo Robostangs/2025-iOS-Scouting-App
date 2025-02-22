@@ -16,7 +16,7 @@ struct QRCodeView: View {
 
     var body: some View {
         VStack {
-            Text("QR Code")
+            Text("Match Data")
                 .font(.title)
                 .bold()
                 .foregroundColor(.orange)
