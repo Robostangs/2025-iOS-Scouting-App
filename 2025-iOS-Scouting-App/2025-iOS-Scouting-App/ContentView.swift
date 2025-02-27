@@ -284,10 +284,10 @@ struct ContentView: View {
             .padding(.bottom, 10)
             SectionHeader(title: "Coral", color: .black, fontSize: .title2)
             VStack(spacing: 20) {
-                CustomStepperView(label: "T4:", value: $autoT1)
-                CustomStepperView(label: "T3:", value: $autoT2)
-                CustomStepperView(label: "T2:", value: $autoT3)
-                CustomStepperView(label: "T1:", value: $autoT4)
+                CustomStepperView(label: "L4:", value: $autoT1)
+                CustomStepperView(label: "L3:", value: $autoT2)
+                CustomStepperView(label: "L2:", value: $autoT3)
+                CustomStepperView(label: "L1:", value: $autoT4)
             }
             .padding(.horizontal)
             .padding(.bottom, 20) // Add space under each picker
@@ -323,10 +323,10 @@ struct ContentView: View {
             .padding(.bottom, 10)
             SectionHeader(title: "Coral", color: .black, fontSize: .title2)
             VStack(spacing: 20) {
-                CustomStepperView(label: "T4:", value: $teleT1)
-                CustomStepperView(label: "T3:", value: $teleT2)
-                CustomStepperView(label: "T2:", value: $teleT3)
-                CustomStepperView(label: "T1:", value: $teleT4)
+                CustomStepperView(label: "L4:", value: $teleT1)
+                CustomStepperView(label: "L3:", value: $teleT2)
+                CustomStepperView(label: "L2:", value: $teleT3)
+                CustomStepperView(label: "L1:", value: $teleT4)
             }
             .padding(.horizontal)
             .padding(.bottom, 20) // Add space under each picker
