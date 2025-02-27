@@ -222,12 +222,12 @@ struct ContentView: View {
             }
         }
         .background(Color.white.edgesIgnoringSafeArea(.all))
-        .onChange(of: resetForm) { newValue in
-            if newValue {
-                clearForm()
-                resetForm = false
-            }
-        }
+        .onChange(of: resetForm) { oldValue, newValue in
+               if newValue {
+                     clearForm()
+                     resetForm = false
+                    }
+                }
         .navigationBarItems(leading: Button(action: {
             presentationMode.wrappedValue.dismiss()
         }) {
